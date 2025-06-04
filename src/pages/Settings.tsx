@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Save, Upload } from 'lucide-react';
+import { Plus } from 'lucide-react';
+import { ProductConfigurationPanel } from '../components/settings/ProductConfigurationPanel';
 export const Settings: React.FC = () => {
   const [activeTab, setActiveTab] = useState('company');
   const [formData, setFormData] = useState({
@@ -47,6 +49,7 @@ export const Settings: React.FC = () => {
             <option value="system">System Preferences</option>
             <option value="users">User Management</option>
             <option value="notifications">Notifications</option>
+            <option value="products">Product Configuration</option>
           </select>
         </div>
         <div className="hidden sm:block border-b border-gray-200">
@@ -62,6 +65,9 @@ export const Settings: React.FC = () => {
             </button>
             <button onClick={() => setActiveTab('notifications')} className={`py-4 px-6 text-sm font-medium ${activeTab === 'notifications' ? 'border-b-2 border-primary text-primary' : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}>
               Notifications
+            </button>
+            <button onClick={() => setActiveTab('products')} className={`py-4 px-6 text-sm font-medium ${activeTab === 'products' ? 'border-b-2 border-primary text-primary' : 'text-gray-500 hover:text-gray-700 hover:border-gray-300'}`}>
+              Product Configuration
             </button>
           </nav>
         </div>
@@ -501,6 +507,20 @@ export const Settings: React.FC = () => {
                 </button>
               </div>
             </form>}
+          {activeTab === 'products' && <div>
+              <div className="flex justify-between items-center mb-4">
+                <div>
+                  <h2 className="text-lg font-medium text-gray-900">
+                    Product Configuration
+                  </h2>
+                  <p className="text-sm text-gray-600">
+                    Manage product types, colors, and sizes available in the
+                    system.
+                  </p>
+                </div>
+              </div>
+              <ProductConfigurationPanel onSave={() => alert('Configuration saved!')} />
+            </div>}
         </div>
       </div>
     </div>;

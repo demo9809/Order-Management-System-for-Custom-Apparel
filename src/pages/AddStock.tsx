@@ -4,7 +4,6 @@ import { ArrowLeft, Save } from 'lucide-react';
 interface StockForm {
   productType: string;
   color: string;
-  neckType: string;
   size: string;
   quantity: number;
   minStockLevel: number;
@@ -16,7 +15,6 @@ export const AddStock: React.FC = () => {
   const [formData, setFormData] = useState<StockForm>({
     productType: '',
     color: '',
-    neckType: '',
     size: '',
     quantity: 0,
     minStockLevel: 15,
@@ -25,7 +23,6 @@ export const AddStock: React.FC = () => {
   });
   const productTypes = ['T-Shirt', 'Jersey', 'Polo Shirt', 'Uniform'];
   const colors = ['White', 'Black', 'Red', 'Blue', 'Green', 'Yellow'];
-  const neckTypes = ['Round', 'V-Neck', 'Polo', 'Crew'];
   const sizes = ['S', 'M', 'L', 'XL', 'XXL'];
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const {
@@ -77,17 +74,6 @@ export const AddStock: React.FC = () => {
                 <option value="">Select color</option>
                 {colors.map(color => <option key={color} value={color}>
                     {color}
-                  </option>)}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Neck Type*
-              </label>
-              <select name="neckType" required value={formData.neckType} onChange={handleChange} className="w-full rounded-md border border-gray-300 py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary">
-                <option value="">Select neck type</option>
-                {neckTypes.map(type => <option key={type} value={type}>
-                    {type}
                   </option>)}
               </select>
             </div>
